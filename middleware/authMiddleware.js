@@ -5,7 +5,7 @@ function authMiddleware(req, res, next) {
   const authHeader = req.headers.authorization;
 
   if (typeof authHeader === "undefined") {
-    return res.status(401).send({ message: "Not authorized" });
+    return res.status(401).send({ message: "Not authorize" });
   }
 
   const [bearer, token] = authHeader.split(" ", 2);

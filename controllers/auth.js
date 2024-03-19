@@ -33,8 +33,8 @@ async function register(req, res, next) {
       to: "anton12vasyliev@gmail.com",
       from: "anton12vasyliev@gmail.com",
       subject: "Hello bulo4ka",
-      html: `To confirm your registration please click on the <a href="http://localhost:3000/users/verify/${verifyToken}">link</a>`,
-      text: `To confirm your registration please click on the <a href="http://localhost:3000/users/verify/${verifyToken}">link</a>`,
+      html: `To confirm your registration please click on the <a href="http://localhost:3000/auth/verify/${verifyToken}">link</a>`,
+      text: `To confirm your registration please click on the <a href="http://localhost:3000/auth/verify/${verifyToken}">link</a>`,
     });
 
     const result = await User.create({
@@ -152,8 +152,8 @@ async function resendVerify(req, res, next) {
       to: "anton12vasyliev@gmail.com",
       from: "anton12vasyliev@gmail.com",
       subject: "Hello bulo4ka",
-      html: `To confirm your registration please click on the <a href="http://localhost:3000/api/users/verify/${user.verifyToken}">link</a>`,
-      text: `To confirm your registration please click on the <a href="http://localhost:3000/api/users/verify/${user.verifyToken}">link</a>`,
+      html: `To confirm your registration please click on the <a href="http://localhost:3000/auth/verify/${verifyToken}">link</a>`,
+      text: `To confirm your registration please click on the <a href="http://localhost:3000/auth/verify/${verifyToken}">link</a>`,
     });
     return res.status(200).send({ message: "Verification email sent" });
   } catch (error) {

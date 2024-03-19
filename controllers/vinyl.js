@@ -56,7 +56,7 @@ async function createVinyl(req, res, next) {
     if (!name || !email || !phone) {
       return res.status(400).send({ message: "Missing fields" });
     }
-    const Vinyl = {
+    const newVinyl = {
       id: uuidv4(),
       name: req.body.name,
       email: req.body.email,
@@ -65,10 +65,10 @@ async function createVinyl(req, res, next) {
       ownerId: req.user.id,
     };
 
-    const result = await Vinyl.create(Vinyl);
+    const result = await Vinyl.create(newVinyl);
     res.status(201).send(result);
   } catch (error) {
-    // res.status(400).send({ message: "Missing body" });
+    res.status(400).send({ message: "error" });
   }
 }
 
