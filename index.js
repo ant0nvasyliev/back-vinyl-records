@@ -26,7 +26,7 @@ app.use(express.json());
 const authMiddleware = require("./middleware/authMiddleware");
 
 app.use("/vinyls", authMiddleware, vinylRouter);
-app.use("/users", authRouter);
+app.use("/users",authMiddleware, authRouter);
 app.use("/users", authMiddleware, userRouter);
 
 app.use((req, res) => {
