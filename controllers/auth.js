@@ -9,12 +9,13 @@ const verifyToken = crypto.randomUUID();
 const Joi = require("joi");
 
 const userSchema = Joi.object({
+  name:Joi.string().min(3).max(30),
   email: Joi.string().email(),
   password: Joi.string().min(3).max(30),
 });
 
 async function register(req, res, next) {
-  const { email, password } = req.body;
+  const { email, password, name } = req.body;
 
   try {
     const validation = userSchema.validate(req.body);
@@ -38,6 +39,7 @@ async function register(req, res, next) {
     });
 
     const result = await User.create({
+      name,
       email,
       verifyToken,
       password: passwordHash,
@@ -45,8 +47,8 @@ async function register(req, res, next) {
     });
     res.status(201).send({
       user: {
+        name,
         email: result.email,
-        subscription: result.subscription,
         avatarURL: result.avatarURL,
       },
     });
@@ -96,7 +98,7 @@ async function login(req, res, next) {
 
     res.status(200).send({
       token,
-      user: { email: user.email, subscription: user.subscription },
+      user: { email: user.email },
     });
   } catch (error) {
     next(error);
@@ -114,9 +116,9 @@ async function logout(req, res, next) {
 }
 
 async function current(req, res) {
-  const { email, subscription } = req.user;
+  const { email } = req.user;
 
-  res.json({ email, subscription });
+  res.json({ email });
 }
 
 async function verify(req, res, next) {

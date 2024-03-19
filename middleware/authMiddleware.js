@@ -35,8 +35,7 @@ function authMiddleware(req, res, next) {
 
     req.user = {
       id: decode.id,
-      email: user.email,
-      subscription: user.subscription,
+      email: user.email
     };
     next();
   });
