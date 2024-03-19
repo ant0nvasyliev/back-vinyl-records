@@ -8,6 +8,7 @@ const VinylSchema = Joi.object({
   email: Joi.string().email(),
   phone: Joi.string().min(6).max(18),
   favorite: Joi.boolean(),
+  format: Joi.string(),
 });
 const Vinyl = require("../models/vinyl");
 
@@ -63,6 +64,7 @@ async function createVinyl(req, res, next) {
       phone: req.body.phone,
       favorite: req.body.favorite,
       ownerId: req.user.id,
+      format: req.body.format
     };
 
     const result = await Vinyl.create(newVinyl);

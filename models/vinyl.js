@@ -1,30 +1,68 @@
-const mongoose = require("mongoose");
-
-//тут треба описать всю карточку диска
+const mongoose = require('mongoose');
 
 const vinylSchema = new mongoose.Schema(
   {
-    name: {
+    format: {
       type: String,
-      required: true,
+      // default: 'Vinyl',
     },
-    email: {
+    description: {
+      type: String
+    },
+    price: {
       type: String,
+      // required: true,
     },
-    phone: {
+    artist: {
       type: String,
+      // required: true,
     },
-    favorite: {
-      type: Boolean,
-      default: false,
+    album: {
+      type: String
+    },
+    diameter: {
+      type: Number
+    },
+    rpm: {
+      type: Number
+    },
+    genre: {
+      type: String
+    },
+    style: {
+      type: String
+    },
+    recordLabel: {
+      type: String
+    },
+    weight: {
+      type: Number
+    },
+    condition: {
+      type: String
+    },
+    coverCondition: {
+      type: String
+    },
+    images: {
+      type: String,
+      // required: true,
+    },
+    id: {
+      type: String,
+      // required: true,
+    },
+    releaseYear: {
+      type: Number,
+      // required: true,
     },
     ownerId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "user",
-      required: true,
+      ref: 'user',
+      // required: true,
     },
   },
   { versionKey: false, timestamps: true }
 );
 
-module.exports = mongoose.model("Vinyl", vinylSchema);
+module.exports = mongoose.model('Vinyl', vinylSchema);
