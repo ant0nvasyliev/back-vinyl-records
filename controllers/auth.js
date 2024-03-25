@@ -9,7 +9,7 @@ const verifyToken = crypto.randomUUID();
 const Joi = require("joi");
 
 const userSchema = Joi.object({
-  name:Joi.string().min(3).max(30),
+  name: Joi.string().min(3).max(30),
   email: Joi.string().email(),
   password: Joi.string().min(3).max(30),
 });
@@ -34,8 +34,8 @@ async function register(req, res, next) {
       to: "anton12vasyliev@gmail.com",
       from: "anton12vasyliev@gmail.com",
       subject: "Hello bulo4ka",
-      html: `To confirm your registration please click on the <a href="http://localhost:3000/auth/verify/${verifyToken}">link</a>`,
-      text: `To confirm your registration please click on the <a href="http://localhost:3000/auth/verify/${verifyToken}">link</a>`,
+      html: `To confirm your registration please click on the <a href="https://back-vinyl-records.onrender.com/auth/verify/${verifyToken}">link</a>`,
+      text: `To confirm your registration please click on the <a href="https://back-vinyl-records.onrender.com/auth/verify/${verifyToken}">link</a>`,
     });
 
     const result = await User.create({
@@ -154,8 +154,8 @@ async function resendVerify(req, res, next) {
       to: "anton12vasyliev@gmail.com",
       from: "anton12vasyliev@gmail.com",
       subject: "Hello bulo4ka",
-      html: `To confirm your registration please click on the <a href="http://localhost:3000/auth/verify/${verifyToken}">link</a>`,
-      text: `To confirm your registration please click on the <a href="http://localhost:3000/auth/verify/${verifyToken}">link</a>`,
+      html: `To confirm your registration please click on the <a href="https://back-vinyl-records.onrender.com/auth/verify/${verifyToken}">link</a>`,
+      text: `To confirm your registration please click on the <a href="https://back-vinyl-records.onrender.com/auth/verify/${verifyToken}">link</a>`,
     });
     return res.status(200).send({ message: "Verification email sent" });
   } catch (error) {
