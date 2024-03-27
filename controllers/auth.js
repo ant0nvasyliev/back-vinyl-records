@@ -98,7 +98,10 @@ async function login(req, res, next) {
 
     res.status(200).send({
       token,
-      user: { email: user.email },
+      user: {
+        name: user.name,
+        email: user.email,
+      },
     });
   } catch (error) {
     next(error);
