@@ -58,7 +58,7 @@ async function register(req, res, next) {
         <p>Remember, our community is all about sharing your favorite vinyl records and finding new music!</p>
         <p>We're excited to have you join us!</p>
         <p>Best,<br/>The VinylRecords Team</p>
-        <a href="http://localhost:3000/auth/activate/${activationLink}" style="display: inline-block; background-color: #007bff; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 5px; font-weight: bold;">Confirm Registration</a>
+        <a href="https://back-vinyl-records.onrender.com/auth/activate${activationLink}" style="display: inline-block; background-color: #007bff; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 5px; font-weight: bold;">Confirm Registration</a>
       </div>
     </div>
       `,
@@ -72,11 +72,7 @@ async function register(req, res, next) {
       httpOnly: true,
     });
     return res.status(201).send({
-      user: {
-        name,
-        email: result.email,
-        avatarURL: result.avatarURL,
-      },
+      user: userDto,
       ...tokens,
     });
   } catch (error) {
@@ -168,7 +164,7 @@ async function logout(req, res, next) {
 //     next(error);
 //   }
 // }
-// не оновлюється кукі при рефреш
+
 async function refresh(req, res, next) {
   try {
     const { refreshToken } = req.cookies;
