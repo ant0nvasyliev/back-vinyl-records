@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
 require("./db");
 
@@ -11,8 +12,10 @@ const userRouter = require("./routes/user");
 
 const app = express();
 
-app.listen(3000, () => {
-  console.log("Server running. Use our API on port: 3000");
+const PORT = process.env.PORT;
+
+app.listen(PORT, () => {
+  console.log(`Server running. Use our API on port: ${PORT}`);
 });
 
 app.use("/avatars", express.static("public/avatars"));
@@ -21,6 +24,7 @@ const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 
 app.use(logger(formatsLogger));
 app.use(cors());
+app.use(cookieParser());
 app.use(express.json());
 
 const authMiddleware = require("./middleware/authMiddleware");

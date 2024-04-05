@@ -5,7 +5,9 @@ const VinylController = require("../controllers/vinyl");
 const router = express.Router();
 const jsonParser = express.json();
 
-router.get("/", VinylController.getVinyls);
+router.get("/", VinylController.getAllVinyls);
+
+router.get("/my-vinyls", VinylController.getMyVinyls);
 
 router.get("/:id", VinylController.getVinyl);
 

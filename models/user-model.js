@@ -1,10 +1,8 @@
 const mongoose = require("mongoose");
 
-// модель юзера
-
 const userSchema = new mongoose.Schema(
   {
-    name:{
+    name: {
       type: String,
       required: [true, "Set name for user"],
     },
@@ -18,22 +16,34 @@ const userSchema = new mongoose.Schema(
       index: true,
       unique: true,
     },
-    token: {
-      type: String,
-      default: null,
-    },
+    // token: {
+    //   type: String,
+    //   default: null,
+    // },
     avatarURL: {
       type: String,
     },
-    verify: {
+    // verify: {
+    //   type: Boolean,
+    //   default: false,
+    // },
+    isActivated: {
       type: Boolean,
       default: false,
     },
-    verifyToken: {
+    isLoggedIn: {
+      type: Boolean,
+      default: false,
+    },
+    activationLink: {
       type: String,
       default: null,
-      required: [true, "Verify token is required"],
     },
+    // verifyToken: {
+    //   type: String,
+    //   default: null,
+    //   required: [false, "Verify token is required"],
+    // },
   },
   { versionKey: false, timestamps: true }
 );

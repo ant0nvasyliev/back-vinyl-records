@@ -10,9 +10,17 @@ const VinylSchema = Joi.object({
   favorite: Joi.boolean(),
   format: Joi.string(),
 });
-const Vinyl = require("../models/vinyl");
+const Vinyl = require("../models/vinyl-models");
 
-async function getVinyls(req, res, next) {
+async function getAllVinyls(req, res, next) {
+  try {
+    const allVinyls = await Vinyl.find();
+    res.send(allVinyls).status(200);
+  } catch (error) {
+    next(error);
+  }
+}
+async function getMyVinyls(req, res, next) {
   try {
     const userId = req.user.id;
     const Vinyls = await Vinyl.find({ ownerId: userId });
@@ -64,7 +72,7 @@ async function createVinyl(req, res, next) {
       phone: req.body.phone,
       favorite: req.body.favorite,
       ownerId: req.user.id,
-      format: req.body.format
+      format: req.body.format,
     };
 
     const result = await Vinyl.create(newVinyl);
@@ -164,7 +172,8 @@ async function updateStatusVinyl(req, res, next) {
 }
 
 module.exports = {
-  getVinyls,
+  getAllVinyls,
+  getMyVinyls,
   getVinyl,
   createVinyl,
   deleteVinyl,

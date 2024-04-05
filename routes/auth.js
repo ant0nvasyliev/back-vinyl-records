@@ -10,12 +10,16 @@ router.post("/register", jsonParser, AuthController.register);
 
 router.post("/login", jsonParser, AuthController.login);
 
-router.post("/logout", jsonParser, authMiddleware, AuthController.logout);
+router.post("/logout", jsonParser,  AuthController.logout);
 
-router.get("/current", jsonParser, authMiddleware, AuthController.current);
+// router.get("/current", jsonParser, authMiddleware, AuthController.current);
 
-router.get("/verify/:token", AuthController.verify);
+// router.get("/verify/:token", AuthController.verify);
 
-router.post("/verify", jsonParser, AuthController.resendVerify);
+router.get("/refresh", AuthController.refresh);
+
+router.get("/activate/:link", AuthController.activate);
+// "Кнопка відправили листа повторно"
+// router.post("/verify", jsonParser, AuthController.resendVerify);
 
 module.exports = router;
