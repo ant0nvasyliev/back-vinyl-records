@@ -130,6 +130,7 @@ async function logout(req, res, next) {
     const { refreshToken } = req.cookies;
     const token = await tokenService.removeToken(refreshToken);
     let user = await User.findOne({ email });
+    console.log(email);
     if (!user) {
       return res.status(404).send({ message: "User not found" });
     }

@@ -12,10 +12,6 @@ router.post("/login", jsonParser, AuthController.login);
 
 router.post("/logout", jsonParser,  AuthController.logout);
 
-// router.get("/current", jsonParser, authMiddleware, AuthController.current);
-
-// router.get("/verify/:token", AuthController.verify);
-
 router.get("/refresh", AuthController.refresh);
 
 router.get("/activate/:link", AuthController.activate);
